@@ -1,0 +1,148 @@
+/* pages/bluetooth/bluetooth.wxss */
+.container {
+    padding: 30rpx;
+    background: linear-gradient(135deg, #ffa500 0%, #800080 100%);
+    border-radius: 20rpx;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+
+.tip {
+    margin-left: 10rpx;
+    font-size: 28rpx;
+    color: #fff;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+
+.divider {
+    height: 1rpx;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 30rpx 0;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    margin: 20rpx 0;
+    padding: 20rpx;
+    border-radius: 50rpx;
+    font-size: 32rpx;
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.connect {
+    background: #09BB07;
+}
+
+.disconnect {
+    background: #ff4d4f;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.pressure-frame {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+    padding: 20rpx;
+    border: 2rpx solid rgba(255, 255, 255, 0.3);
+    border-radius: 10rpx;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+}
+
+.mode {
+    width: 30%;
+    background: #0f3460;
+}
+
+.heat {
+    background: #e94560;
+}
+
+.mode:active, .heat:active {
+    opacity: 0.8;
+}
+
+.assistant-area {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.assistant-btn {
+    width: 100rpx;
+    height: 100rpx;
+    background: #0f3460;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4rpx 20rpx rgba(15, 52, 96, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36rpx;
+    z-index: 1000;
+    opacity: 0.95;
+    pointer-events: auto;
+}
+.assistant-btn icon {
+    margin-right: 12rpx;
+}
+
+.assistant-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 100%;
+    font-size: 22rpx;
+    color: #fff;
+    pointer-events: none;
+}
+
+.assistant-adsorb-toggle {
+    position: fixed;
+    top: 40rpx;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    z-index: 1200;
+}
+.adsorb-toggle-btn {
+    background: #0f3460;
+    color: #fff;
+    border-radius: 30rpx;
+    font-size: 26rpx;
+    padding: 12rpx 36rpx;
+    box-shadow: 0 2rpx 8rpx rgba(15, 52, 96, 0.15);
+    border: none;
+}

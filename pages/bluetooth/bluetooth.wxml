@@ -1,0 +1,53 @@
+<!--pages/bluetooth/bluetooth.wxml-->
+<view class="container">
+    <view class="header">
+        <icon type="info" size="20" color="#666"/>
+        <text class="tip">打开小程序自动连接，若未连接成功请打开调试模式定位问题</text>
+    </view>
+    <view class="device-list">
+        <block wx:for="{{deviceList}}" wx:key="deviceId">
+            <view class="device-item" bindtap="connectDevice" data-device-id="{{item.deviceId}}">
+                <text>{{item.name}}</text>
+                <text>信号强度：{{item.RSSI}} dBm</text>
+            </view>
+        </block>
+    </view>
+    <view class="status">
+        <icon type="success" size="20" color="#09BB07"/>
+        <text>连接状态：{{connectState}}</text>
+    </view>
+    <view class="divider"/>
+<view class="pressure-frame">
+    <icon type="info" size="20" color="#666"/>
+    <text>压力值：{{pressureValue}} Kpa</text>
+</view>
+<view class="divider"/>
+<view class="mode-buttons">
+    <button class="btn mode" disabled="{{connectState!=='connected'}}" bindtap="setComfortMode">舒适</button>
+    <button class="btn mode" disabled="{{connectState!=='connected'}}" bindtap="setPerformanceMode">性能</button>
+    <button class="btn mode" disabled="{{connectState!=='connected'}}" bindtap="setPowerMode">强劲</button>
+</view>
+<view class="heating-button">
+    <button class="btn heat" disabled="{{connectState!=='connected'}}" bindtap="toggleHeating">加热</button>
+</view>
+    <view class="buttons">
+        <button class="btn connect" disabled="{{connectState==='connected'}}" bindtap="connectHiBreathDevice">
+            <icon type="bluetooth" size="20" color="#fff"/>
+            <text>连接蓝牙设备</text>
+        </button>
+        <button class="btn disconnect" disabled="{{connectState!=='connected'}}" bindtap="disconnectDevice">
+            <icon type="clear" size="20" color="#fff"/>
+            <text>断开连接</text>
+        </button>
+    </view>
+<movable-area class="assistant-area">
+  <movable-view class="assistant-btn" direction="all" x="{{assistantX}}" y="{{assistantY}}"
+    out-of-bounds="true"
+    bindchange="onAssistantDrag"
+    bindtap="onAssistantTap">
+    <icon type="help" size="36" color="#fff" />
+    <text class="assistant-text">小助手</text>
+  </movable-view>
+</movable-area>
+</view>
+

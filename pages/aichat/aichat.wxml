@@ -1,0 +1,40 @@
+<!--pages/aichat/aichat.wxml-->
+<view class="chat-page">
+    <!-- 聊天内容区域 -->
+    <scroll-view class="chat-container" scroll-y="true" scroll-top="{{scrollTop}}">
+        <view class="messages">
+            <block wx:for="{{messages}}" wx:key="timestamp">
+                <view class="message {{item.type === 'user' ? 'user-message' : 'ai-message'}}">
+                    <view class="message-content">
+                        <text>{{item.content}}</text>
+                    </view>
+                    <view class="message-time">
+                        <text>{{item.timestamp}}</text>
+                    </view>
+                </view>
+            </block>
+            
+            <!-- 加载状态 -->
+            <view class="loading-message" wx:if="{{isLoading}}">
+                <view class="loading-dots">
+                    <view class="dot"></view>
+                    <view class="dot"></view>
+                    <view class="dot"></view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+
+    <!-- 底部输入区域 -->
+    <view class="input-area">
+        <input class="input-field" 
+               value="{{inputValue}}" 
+               bindinput="onInputChange"
+               placeholder="请输入您的问题..."
+               confirm-type="send"
+               bindconfirm="sendMessage" />
+        <button class="send-btn" bindtap="sendMessage" disabled="{{!inputValue.trim()}}">
+            发送
+        </button>
+    </view>
+</view> 

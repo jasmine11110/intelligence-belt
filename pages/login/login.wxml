@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="header">
+    
+    <text class="title">赟原科技登录</text>
+  </view>
+  <view class="content">
+    <button class="login-btn" bindtap="handleLogin">立即登录</button>
+  </view>
+</view>

@@ -1,0 +1,161 @@
+/* pages/aichat/aichat.wxss */
+.chat-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #ffa500 0%, #800080 100%);
+    position: relative;
+}
+
+/* 聊天内容区域 */
+.chat-container {
+    flex: 1;
+    padding: 20rpx;
+    overflow-y: auto;
+}
+
+.messages {
+    padding-bottom: 20rpx;
+}
+
+.message {
+    margin-bottom: 30rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message {
+    align-items: flex-end;
+    margin-right: 40rpx;
+}
+
+.ai-message {
+    align-items: flex-start;
+    margin-left: 20rpx;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 20rpx 24rpx;
+    border-radius: 20rpx;
+    word-wrap: break-word;
+}
+
+.user-message .message-content {
+    background: #ffffff;
+    color: #000000;
+    border-radius: 20rpx;
+    border-bottom-right-radius: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.ai-message .message-content {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border-radius: 20rpx;
+    border-bottom-left-radius: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.message-time {
+    margin-top: 8rpx;
+    font-size: 24rpx;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.user-message .message-time {
+    text-align: right;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.ai-message .message-time {
+    text-align: left;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* 加载状态 */
+.loading-message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30rpx;
+}
+
+.loading-dots {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 24rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20rpx;
+    border-bottom-left-radius: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.dot {
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background: #0f3460;
+    margin: 0 6rpx;
+    animation: loading 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes loading {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 底部输入区域 */
+.input-area {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-top: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.input-field {
+    flex: 1;
+    height: 80rpx;
+    padding: 0 24rpx;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 40rpx;
+    margin-right: 20rpx;
+    font-size: 28rpx;
+    border: 2rpx solid rgba(15, 52, 96, 0.2);
+}
+
+.send-btn {
+    width: 120rpx;
+    height: 80rpx;
+    background: #000000;
+    color: #000000;
+    border-radius: 40rpx;
+    font-size: 28rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
+}
+
+.send-btn:disabled {
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    box-shadow: none;
+} 
