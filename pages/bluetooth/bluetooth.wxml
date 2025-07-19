@@ -1,0 +1,128 @@
+<!--pages/bluetooth/bluetooth.wxml-->
+<view class="container">
+    <!-- 头部状态栏 -->
+    <view class="header">
+        <view class="status-bar">
+            <view class="status-item">
+                <icon type="{{connectState === 'connected' ? 'success' : connectState === 'connecting' ? 'waiting' : 'warn'}}" 
+                      size="16" 
+                      color="{{connectState === 'connected' ? '#09BB07' : connectState === 'connecting' ? '#FFA500' : '#FF4444'}}"/>
+                <text class="status-text">状态：{{connectState === 'connected' ? '已连接' : connectState === 'connecting' ? '连接中' : connectState === 'error' ? '连接错误' : '未连接'}}</text>
+            </view>
+            <view class="status-item" wx:if="{{isScanning}}">
+                <icon type="waiting" size="16" color="#FFA500"/>
+                <text class="status-text">搜索中...</text>
+            </view>
+        </view>
+        
+        <!-- 连接设备信息 -->
+        <view class="connected-device" wx:if="{{connectedDevice}}">
+            <icon type="success" size="20" color="#09BB07"/>
+            <text class="device-name">{{connectedDevice.displayName}}</text>
+            <text class="device-rssi">{{connectedDevice.RSSI}}dBm</text>
+        </view>
+    </view>
+
+    <!-- 设备列表区域 -->
+    <view class="device-section">
+        <view class="section-header">
+            <text class="section-title">可用设备</text>
+            <button class="refresh-btn" bindtap="refreshDeviceList" disabled="{{isOperating}}">
+                <icon type="refresh" size="16" color="#666"/>
+                <text>刷新</text>
+            </button>
+        </view>
+        
+        <view class="device-list">
+            <block wx:if="{{deviceList.length > 0}}">
+                <view class="device-item" 
+                      wx:for="{{deviceList}}" 
+                      wx:key="deviceId"
+                      bindtap="connectToDevice" 
+                      data-deviceid="{{item.deviceId}}"
+                      disabled="{{isOperating || connectState === 'connected'}}">
+                    <view class="device-info">
+                        <view class="device-name">{{item.displayName}}</view>
+                        <view class="device-details">
+                            <text class="device-id">{{item.deviceId}}</text>
+                            <text class="device-rssi">{{item.RSSI}}dBm</text>
+                        </view>
+                    </view>
+                    <view class="device-action">
+                        <icon type="success" size="20" color="#09BB07" wx:if="{{connectState === 'connected' && connectedDevice.deviceId === item.deviceId}}"/>
+                        <icon type="waiting" size="20" color="#FFA500" wx:elif="{{connectState === 'connecting'}}"/>
+                        <icon type="arrow" size="20" color="#666" wx:else/>
+                    </view>
+                </view>
+            </block>
+            
+            <view class="empty-state" wx:else>
+                <icon type="info" size="40" color="#ccc"/>
+                <text class="empty-text">{{isScanning ? '正在搜索设备...' : '未发现设备'}}</text>
+                <text class="empty-tip">请确保设备已开启并处于可发现状态</text>
+            </view>
+        </view>
+    </view>
+
+    <!-- 控制面板 -->
+    <view class="control-panel" wx:if="{{connectState === 'connected'}}">
+        <view class="panel-header">
+            <icon type="success" size="20" color="#09BB07"/>
+            <text class="panel-title">设备控制</text>
+        </view>
+        
+        <!-- 压力值显示 -->
+        <view class="pressure-display">
+            <view class="pressure-label">当前压力值</view>
+            <view class="pressure-value">{{pressureValue}} Kpa</view>
+        </view>
+        
+        <!-- 模式控制 -->
+        <view class="mode-control">
+            <view class="control-label">工作模式</view>
+            <view class="mode-buttons">
+                <button class="mode-btn" bindtap="setComfortMode">舒适</button>
+                <button class="mode-btn" bindtap="setPerformanceMode">性能</button>
+                <button class="mode-btn" bindtap="setPowerMode">强劲</button>
+            </view>
+        </view>
+        
+        <!-- 加热控制 -->
+        <view class="heating-control">
+            <view class="control-label">加热功能</view>
+            <button class="heating-btn" bindtap="toggleHeating">切换加热</button>
+        </view>
+        
+        <!-- 断开连接 -->
+        <view class="disconnect-section">
+            <button class="disconnect-btn" bindtap="disconnectDevice" disabled="{{isOperating}}">
+                <icon type="clear" size="16" color="#fff"/>
+                <text>断开连接</text>
+            </button>
+        </view>
+    </view>
+
+    <!-- 原始数据显示 -->
+    <view class="data-section" wx:if="{{rawData}}">
+        <view class="section-header">
+            <icon type="info" size="16" color="#666"/>
+            <text class="section-title">原始数据</text>
+        </view>
+        <view class="raw-data-content">
+            <text class="data-text">{{rawData}}</text>
+        </view>
+    </view>
+
+    <!-- 操作提示 -->
+    <view class="tips-section" wx:if="{{connectState === 'disconnected'}}">
+        <view class="tip-item">
+            <icon type="info" size="16" color="#666"/>
+            <text class="tip-text">点击设备名称进行连接</text>
+        </view>
+        <view class="tip-item">
+            <icon type="info" size="16" color="#666"/>
+            <text class="tip-text">确保设备距离较近且已开启</text>
+        </view>
+    </view>
+</view>
+

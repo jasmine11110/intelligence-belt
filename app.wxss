@@ -1,0 +1,11 @@
+/* reset */
+page {
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #ffa500 0%, #800080 100%);
+}
+
+.container {
+  background: transparent;
+}

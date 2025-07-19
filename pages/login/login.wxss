@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin: 20rpx 0 10rpx 0;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  max-width: 600rpx;
+}
+
+.login-btn {
+  width: 100% !important;
+  height: 88rpx;
+  background: #fff;
+  color: #667eea;
+  border: none;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.login-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+}
+
+.login-btn[disabled] {
+  background: rgba(255, 255, 255, 0.6);
+  color: rgba(102, 126, 234, 0.6);
+}
+
+.tips {
+  text-align: center;
+  padding: 20rpx;
+}
+
+.tips text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
